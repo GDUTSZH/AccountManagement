@@ -1,0 +1,33 @@
+CREATE DATABASE account_management_system character set utf8;
+use account_management_system;
+CREATE TABLE S_User
+(
+	user_name		varchar(20) not null,
+	user_password	varchar(20) not null,
+	user_question	varchar(25) not null,
+	user_answer		varchar(20) not null,
+	CONSTRAINT USER_PRIM PRIMARY KEY(user_name)
+);
+CREATE TABLE Post
+(
+	user_name		varchar(20) not null,
+	post_type			varchar(20) not null unique,
+	note			varchar(200),
+	CONSTRAINT FK_1 FOREIGN KEY (user_name) REFERENCES S_User (user_name) ON DELETE CASCADE,
+	CONSTRAINT Post_PRIM PRIMARY KEY(user_name,post_type) 
+);
+CREATE TABLE Deliver
+(
+	user_name		varchar(20) not null,
+	company_name			varchar(20) not null,
+	post_name varchar(20) not null,
+  post_url varchar(100) not null,
+	deliver_account varchar(20) not null,
+	deliver_password varchar(20) not null,
+	remarks varchar(100),
+	post_type varchar(20),
+	post_time timestamp,
+	CONSTRAINT FK_2 FOREIGN KEY (post_type) REFERENCES Post(post_type) ON DELETE SET NULL ON UPDATE CASCADE,
+	CONSTRAINT FK_3 FOREIGN KEY (user_name) REFERENCES S_User(user_name) ON DELETE CASCADE,
+	CONSTRAINT Deliver_PRIM PRIMARY KEY(user_name,company_name,post_name)
+);
