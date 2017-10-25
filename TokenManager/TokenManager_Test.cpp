@@ -1,11 +1,6 @@
 #include <iostream>
 #include <string>
 #include "TokenManager.h"
-#include "unistd.h"
-#include <vector>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sstream>
 using namespace std;
 
 int main()
