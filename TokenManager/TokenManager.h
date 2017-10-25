@@ -27,8 +27,9 @@ public:
     static void StartManager();
     
     string GetToken(const string &sUserName);
-    string SwapToken(const string &sToken,const string &sUserName);
+    string SwapToken(string &sToken,const string &sUserName);
     bool VolidateToken(const string &sToken);
+    string GetRandStr(int nSize);
     
 private:
     static CTokenManager * m_pInstance;
@@ -37,7 +38,7 @@ private:
     std::mutex m_mtxLock;
     std::map<string, int> m_mapToken; //token - time
     
-    const int m_nLifeTime = 300;
+    const int m_nLifeTime = 120;
     const string m_sTOKEN_STR1 = "012345678901234567890123456789ab";
     const string m_sTOKEN_STR2 = "012345678901234567890123456789ab";
 };

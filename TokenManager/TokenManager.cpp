@@ -3,7 +3,9 @@
 CTokenManager * CTokenManager::m_pInstance = NULL;
 
 CTokenManager::CTokenManager()
-{}
+{
+    srand((int)time(NULL));
+}
 
 CTokenManager * CTokenManager::GetInstance()
 {
@@ -41,20 +43,21 @@ void CTokenManager::ThreadFunc()
 string CTokenManager::GetToken(const string &sUserName)
 {
     int nTime = (int)time(NULL);
-    string sToken = m_sTOKEN_STR1 + sUserName + Int2String(nTime) + m_sTOKEN_STR2;
+    string sToken = GetRandStr(32) + sUserName + Int2String(nTime) + GetRandStr(32);
     //sToken = GetMD5(sToken);
     std::lock_guard<std::mutex> lg_Lock(m_mtxLock);
     m_mapToken[sToken] = nTime;
     return sToken;
 }
 
-string CTokenManager::SwapToken(const string &sToken,const string &sUserName)
+string CTokenManager::SwapToken(string &sToken,const string &sUserName)
 {
-    string sNewToken = GetToken(sUserName);
+    string sOldToken = sToken;
+    sToken = GetToken(sUserName);
     int nTime = (int)time(NULL);
     std::lock_guard<std::mutex> lg_Lock(m_mtxLock);
-    m_mapToken[sToken] = nTime - m_nLifeTime - 1;
-    return sNewToken;
+    m_mapToken[sOldToken] = nTime - m_nLifeTime - 1;
+    return sToken;
 }
 
 bool CTokenManager::VolidateToken(const string &sToken)
@@ -89,4 +92,25 @@ string CTokenManager::Int2String(int n)
     stringstream ss;
     ss << n;
     return ss.str();
+}
+
+string CTokenManager::GetRandStr(int nSize)
+{
+    string sRandStr;
+    int nChar;
+    for(int i=0;i<nSize;++i)
+    {
+        nChar = rand();
+        switch(rand()%3)
+        {
+        case 0:
+            nChar = nChar % 10 + '0'; break;
+        case 1:
+            nChar = nChar % 26 + 'A'; break;
+        case 2:
+            nChar = nChar % 26 + 'a'; break;
+        }
+        sRandStr += (char)nChar;
+    }
+    return sRandStr;
 }
