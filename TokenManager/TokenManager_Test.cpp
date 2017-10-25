@@ -10,36 +10,17 @@ using namespace std;
 
 int main()
 {
-    CTokenManager * pManeger = CTokenManager::GetInstance();
-
-    pManeger->StartManager();
-    char C[20];
-    vector<string> v;
-    stringstream ss;
-    string sTmp;
-    for(int i=0;i<200;++i)
+    string sTime = "123456091203";
+    string sData = "aidjoau9uas0d9u0jmeoqd98ua09";
+    string sToken = CTokenManager::GetToken(sTime, sData);
+    cout << "Token : " << sToken << endl;
+    if(CTokenManager::VolidateToken(sTime, sData, sToken))
     {
-        if(i<12)
-            v.push_back(pManeger->GetToken("TestName"));
-        string sTrue = "有效Token : ";
-        string sFalse = "过时失效Token ：";
-        for(int j=0;j<v.size();++j)
-        {
-            ss.clear();
-            ss << j+1;
-            ss >> sTmp;
-            if(pManeger->VolidateToken(v[j]))
-            {
-                sTrue += sTmp + "    ";
-                if((j+1)%3 == 0)
-                    v[j] = pManeger->SwapToken(v[j], "TestName");
-            }
-            else
-                sFalse += sTmp + "    ";
-        }
-        cout << sTrue << endl;
-        cout << sFalse << endl;
-        sleep(10);
+        cout << "Token验证通过" <<endl; 
+    }
+    else
+    {
+        cout << "Token验证失败" <<endl; 
     }
 
     return 0;
