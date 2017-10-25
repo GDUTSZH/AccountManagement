@@ -1,2 +1,2 @@
-This is a test file.
-Test.
+项目名称：账号管理系统
+项目简介：使用libevent实现http服务器，使用MySQL数据库保存加密的用户信息
