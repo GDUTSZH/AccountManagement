@@ -6,11 +6,8 @@
 #include <mutex>
 #include <thread>
 #include <unistd.h>
+#include "../Interfaces/Interface.h"
 
-#include "HttpCommon.h"
-#include "Login.h"
-#include "Play.h"
-#include "Interface.h"
 #include "ThreadPool.h"
 #define TNUM 70
 using namespace std;
@@ -103,7 +100,7 @@ void startse()
 {
 	
 	pMypoll=new CThreadPool(10);
-	startHttpServer("0.0.0.0", 80, start_thread, NULL);
+	startHttpServer("0.0.0.0", 8080, start_thread, NULL);
 	//startHttpServer("0.0.0.0", 80, MyHttpServerHandler, NULL);
 	}
 int main(int argc, char** argv)
