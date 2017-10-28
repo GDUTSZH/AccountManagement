@@ -12,16 +12,14 @@
 #
 #
 
-EXECUTABLE := main    	# 可执行文件名
-LIBDIR:=  # 静态库目录
-LIBS :=	event pthread jsoncpp $(mysql_config --cflags --libs) mysqlclient  # 静态库文件名
-INCLUDES:=.		# 头文件目录
+EXECUTABLE := main    																	# 可执行文件名
+LIBDIR:=  																				# 静态库目录
+LIBS :=	event pthread jsoncpp mysqlclient 	 											# 静态库文件名
+INCLUDES:= .																			# 头文件目录
 SRCDIR:= ../Interfaces/ ../MysqlClient/ ../Base64/ ../TicketManager/ ../TokenManager/	# 除了当前目录外，其他的源代码文件目录
-#
-# # Now alter any implicit rules' variables if you like, e.g.:
 
 CC:=g++
-CFLAGS := -g -Wall -std=c++11 -pthread -levent -ljsoncpp -I/usr/include/mysql -L/usr/lib/mysql
+CFLAGS := -g -Wall -std=c++11 -I/usr/include/mysql
 CPPFLAGS := $(CFLAGS)
 CPPFLAGS += $(addprefix -I,$(INCLUDES))
 CPPFLAGS += -MMD
@@ -35,7 +33,6 @@ LDFLAGS =
 #
 
 RM-F := rm -f
-
 
 # # You shouldn't need to change anything below this point.
 #
