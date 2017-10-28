@@ -15,12 +15,6 @@ public:
 	void Send(int nCode, string sMessage);
 	void Send_Error(int nCode, string sMessage);
 
-	void SetContant(string sContant);
-	string GetContant();
-
-private:
-	string m_sContant;
-
 protected:
 	PREQ pReq;
 };

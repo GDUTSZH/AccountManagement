@@ -55,11 +55,6 @@ void start_thread(struct evhttp_request* req,void *arg)
 	
 void MyHttpServerHandler(struct evhttp_request* req)
 {
-	//创建要使用的buffer对象
-	evbuffer* buf = evbuffer_new();
-	if (!buf) {
-		return;
-	}
 	//获取请求的URI
 	string sURI = evhttp_request_get_uri(req);
 
@@ -73,11 +68,6 @@ void MyHttpServerHandler(struct evhttp_request* req)
 	CHttpCommon * myHttp = (CHttpCommon *)ObjectFactory::CreateObject(sInterfaceName, req);
 	myHttp->Handle();
 	delete myHttp;
-
-	//evbuffer_add_printf(buf, myHttp->GetContant().c_str());
-	//回复给客户端
-	//evhttp_send_reply(req, HTTP_OK, "OK", buf);
-	//evbuffer_free(buf);
 }
 
 void startse()
