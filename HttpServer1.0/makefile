@@ -57,6 +57,9 @@ objs : $(OBJS)
 clean :
 	@$(RM-F) *.o
 	@$(RM-F) *.d
+	@$(RM-F) $(DEPS)
+	@$(RM-F) $(OBJS)
+
 veryclean: clean
 	@$(RM-F) $(EXECUTABLE)
 
