@@ -12,7 +12,7 @@ CMySQL_Client::CMySQL_Client()
 
 	cout << "Connect ..." <<endl;
 	
-	int connected = Connect("120.78.92.86",3306,"mysqlDBA","GDUT14_iot1_DBA","TestDB",0);
+	int connected = Connect("120.78.92.86",3306,"mysqlDBA","GDUT14_iot1_DBA","AccountManagementDB",0);
 
 	if(connected)
 		cout << "MySql Connect Success" << endl;

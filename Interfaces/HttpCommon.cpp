@@ -22,15 +22,28 @@ bool CHttpCommon::ParseParam(Json::Value &jRoot)
 
 	//把参数列表格式化成Json
 	sParamList = "{\"" + sParamList + "\"}";
-	int nIndex;
+	int nIndex, nIndex2;
+	if(-1 != (nIndex2 = sParamList.find("=")))
+	{
+		sParamList.replace(nIndex2, 1, "\":\"");
+	}
 	while(-1 != (nIndex = sParamList.find("&")))
 	{
+		if(-1 != (nIndex2 = sParamList.find("=", nIndex)))
+		{
+			sParamList.replace(nIndex2, 1, "\":\"");
+		}
 		sParamList.replace(nIndex, 1, "\",\"");
 	}
-	while(-1 != (nIndex = sParamList.find("=")))
-	{
-		sParamList.replace(nIndex, 1, "\":\"");
-	}
+
+	// while(-1 != (nIndex = sParamList.find("&")))
+	// {
+	// 	sParamList.replace(nIndex, 1, "\",\"");
+	// }
+	// while(-1 != (nIndex = sParamList.find("=")))
+	// {
+	// 	sParamList.replace(nIndex, 1, "\":\"");
+	// }
 
 	Json::Reader jReader;
 	if ( ! jReader.parse(sParamList.c_str(), jRoot))

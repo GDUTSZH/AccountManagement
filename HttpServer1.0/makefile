@@ -11,20 +11,25 @@
 # command line of course, if you prefer to do it that way.
 #
 #
+
 EXECUTABLE := main    	# 可执行文件名
-LIBDIR:=	      	# 静态库目录
-LIBS :=	event pthread jsoncpp      		# 静态库文件名
-INCLUDES:=.	   	# 头文件目录
-SRCDIR:= ../Interfaces/      	# 除了当前目录外，其他的源代码文件目录
+
+MYSQLCFLAGS = `mysql_config –-cflags` 
+MYSQLLIBS   = `mysql_config -–libs`
+
+LIBDIR:=  -lmysqlclient -I/usr/include/mysql -L/usr/lib/mysql  $(mysql_config --cflags --libs)	# 静态库目录
+LIBS :=	event pthread jsoncpp $(mysql_config --cflags --libs) mysqlclient  # 静态库文件名
+INCLUDES:=.	 ../Base64/		# 头文件目录
+SRCDIR:= ../Interfaces/ ../MysqlClient/ ../Base64/	# 除了当前目录外，其他的源代码文件目录
 #
 # # Now alter any implicit rules' variables if you like, e.g.:
 
 CC:=g++
-CFLAGS := -g -Wall -std=c++11 -pthread -levent -ljsoncpp
+CFLAGS := -g -Wall -std=c++11 -pthread -levent -ljsoncpp $(mysql_config --cflags --libs) -pedantic -lmysqlclient -I/usr/include/mysql -L/usr/lib/mysql
 CPPFLAGS := $(CFLAGS)
 CPPFLAGS += $(addprefix -I,$(INCLUDES))
 CPPFLAGS += -MMD
-LDFLAGS = -pthread -levent -ljsoncpp
+LDFLAGS = -pthread -levent -ljsoncpp -lmysqlclient
 #
 # # The next bit checks to see whether rm is in your djgpp bin
 # # directory; if not it uses del instead, but this can cause (harmless)

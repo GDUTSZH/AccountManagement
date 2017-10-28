@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include <mysql/mysql.h>
+#include <mysql.h>
 #include <vector>
 #include "json/json.h"
 using namespace std;
