@@ -81,11 +81,6 @@ void startse()
 int main(int argc, char** argv)
 {
 	std::cout << "Server Start" << std::endl;
-	//Windows 平台套接字库的初始化
-#ifdef WIN32
-	WSADATA wsaData;
-	WSAStartup(MAKEWORD(2, 2), &wsaData);
-#endif
 	//多线程
 /*	thread threads[TNUM];
 	for(int i=0;i<TNUM;i++)
@@ -93,9 +88,8 @@ int main(int argc, char** argv)
 	for(auto &th:threads)
 		th.join();*/
 	//启动服务在地址 127.0.0.1:9000 上
+	
 	startse();
-#ifdef WIN32
-	WSACleanup();
-#endif
+
 	return 0;
 }
