@@ -6,10 +6,10 @@
 class CLogin : public CHttpCommon
 {
 public:
-	CLogin();
+	CLogin(PREQ pReq);
 	virtual ~CLogin();
 
-	void Handle();
+	virtual void Handle();
 };
 
 #endif /* _LOGIN_H_ */

@@ -37,7 +37,7 @@ public:
 	auto AddTask(Func&& f, Args&&... args)->std::future<decltype(std::bind(std::forward<Func>(f), std::forward<Args>(args)...)())>
 	{
 		if (stop.load())
-			throw std::runtime_error("ÒÑ¹Ø±ÕÈÎÎñÌá½»Èë¿Ú");
+			throw std::runtime_error("å·²å…³é—­ä»»åŠ¡æäº¤å…¥å£");
 		auto func = std::bind(std::forward<Func>(f), std::forward<Args>(args)...);
 		auto task = std::make_shared<std::packaged_task<decltype(func())()>>(func);
 		std::lock_guard<std::mutex> Lock(this->m_mLock);
@@ -49,12 +49,12 @@ public:
 	{
 		while (true)
 		{
-		//	cout<<"Ïß³Ì "<< std::this_thread::get_id()<<endl;
+		//	cout<<"çº¿ç¨‹ "<< std::this_thread::get_id()<<endl;
 			if (0 != sem_wait(&m_sSem))
 				break;
-			//printf("Ïß³Ì %d ³¢ÊÔÖ´ĞĞ\n", std::this_thread::get_id());
+			//printf("çº¿ç¨‹ %d å°è¯•æ‰§è¡Œ\n", std::this_thread::get_id());
 			std::unique_lock<std::mutex> Lock(m_mLock);
-			//printf("Ïß³Ì %d Ö´ĞĞÁË\n", std::this_thread::get_id());
+			//printf("çº¿ç¨‹ %d æ‰§è¡Œäº†\n", std::this_thread::get_id());
 			if (!m_qTasks.empty())
 			{
 				Task task{ std::move(m_qTasks.front()) };
@@ -73,11 +73,11 @@ public:
 		stop = false;
 	}
 private:
-	vector<thread> m_tPool;	//Ïß³Ì³Ø
-	queue<Task> m_qTasks;	//ÈÎÎñ¶ÓÁĞ
-	mutex m_mLock;			//»¥³âËø
-	sem_t m_sSem;			//ĞÅºÅÁ¿
-	atomic<bool> stop;		//¹Ø±ÕÌá½»
+	vector<thread> m_tPool;	//çº¿ç¨‹æ± 
+	queue<Task> m_qTasks;	//ä»»åŠ¡é˜Ÿåˆ—
+	mutex m_mLock;			//äº’æ–¥é”
+	sem_t m_sSem;			//ä¿¡å·é‡
+	atomic<bool> stop;		//å…³é—­æäº¤
 };
 
 #endif //_THREADPOOL_H_

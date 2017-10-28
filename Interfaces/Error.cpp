@@ -1,6 +1,6 @@
 #include "Error.h"
 
-CError::CError()
+CError::CError(PREQ pReq) : CHttpCommon(pReq)
 {
 }
 
@@ -11,6 +11,7 @@ CError::~CError()
 
 void CError::Handle()
 {
-	SetContant("This is a error commond");
+	Send_Error(404, "ERROR");
+	//SetContant("This is a error commond");
 	//std::cout << "This is a error commond" << std::endl;
 }

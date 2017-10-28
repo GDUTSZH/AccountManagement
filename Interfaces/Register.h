@@ -5,18 +5,19 @@
 #include <string>
 #include <map>
 #include "HttpCommon.h"
+#include "Base.h"
 using namespace std;
 
-typedef void *(*CREATE_FUNC)();
+typedef void *(*CREATE_FUNC)(PREQ pReq);
 
 class ObjectFactory
 {
 public:
-	static void * CreateObject(const string &interface_name)
+	static void * CreateObject(const string &interface_name, PREQ pReq)
 	{
 		if (ClassMAP.find(interface_name) != ClassMAP.end())
-			return ClassMAP[interface_name]();
-		return ClassMAP["ErrorClass"]();
+			return ClassMAP[interface_name](pReq);
+		return ClassMAP["ErrorClass"](pReq);
 	}
 	static void Register(const string &interface_name, CREATE_FUNC func)
 	{
@@ -41,9 +42,9 @@ public:
 class class_name##Register				\
 {										\
 public:									\
-	static void * NewInstance()			\
+	static void * NewInstance(PREQ pReq)\
 	{									\
-		return new class_name();		\
+		return new class_name(pReq);	\
 	}									\
 private:								\
 	static Register _reg;				\

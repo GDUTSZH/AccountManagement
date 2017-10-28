@@ -5,7 +5,7 @@
 class CError : public CHttpCommon
 {
 public:
-	CError();
+	CError(PREQ pReq);
 	virtual ~CError();
 
 	virtual void Handle();

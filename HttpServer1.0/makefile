@@ -1,5 +1,5 @@
 ####################################################
-# Generic makefile - ÍòÄÜMakefile
+# Generic makefile - ä¸‡èƒ½Makefile
 # for compiling and linking C++ projects on Linux 
 # Author: George Foot  Modified:Jackie Lee
 ####################################################
@@ -11,20 +11,20 @@
 # command line of course, if you prefer to do it that way.
 #
 #
-EXECUTABLE := main    	# ¿ÉÖ´ĞĞÎÄ¼şÃû
-LIBDIR:=	      	# ¾²Ì¬¿âÄ¿Â¼
-LIBS :=	event pthread       		# ¾²Ì¬¿âÎÄ¼şÃû
-INCLUDES:=.	   	# Í·ÎÄ¼şÄ¿Â¼
-SRCDIR:= ../Interfaces/      	# ³ıÁËµ±Ç°Ä¿Â¼Íâ£¬ÆäËûµÄÔ´´úÂëÎÄ¼şÄ¿Â¼
+EXECUTABLE := main    	# å¯æ‰§è¡Œæ–‡ä»¶å
+LIBDIR:=	      	# é™æ€åº“ç›®å½•
+LIBS :=	event pthread jsoncpp      		# é™æ€åº“æ–‡ä»¶å
+INCLUDES:=.	   	# å¤´æ–‡ä»¶ç›®å½•
+SRCDIR:= ../Interfaces/      	# é™¤äº†å½“å‰ç›®å½•å¤–ï¼Œå…¶ä»–çš„æºä»£ç æ–‡ä»¶ç›®å½•
 #
 # # Now alter any implicit rules' variables if you like, e.g.:
 
 CC:=g++
-CFLAGS := -g -Wall -std=c++11 -pthread -levent
+CFLAGS := -g -Wall -std=c++11 -pthread -levent -ljsoncpp
 CPPFLAGS := $(CFLAGS)
 CPPFLAGS += $(addprefix -I,$(INCLUDES))
 CPPFLAGS += -MMD
-LDFLAGS = -pthread -levent
+LDFLAGS = -pthread -levent -ljsoncpp
 #
 # # The next bit checks to see whether rm is in your djgpp bin
 # # directory; if not it uses del instead, but this can cause (harmless)

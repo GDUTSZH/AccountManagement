@@ -15,22 +15,22 @@ using namespace std;
 CThreadPool *pMypoll;
 bool startHttpServer(const char* ip, int port, void(*cb)(struct evhttp_request *, void *), void *arg)
 {
-	//´´½¨event_baseºÍevhttp
+	//åˆ›å»ºevent_baseå’Œevhttp
 	event_base* base = event_base_new();
 	evhttp* http_server = evhttp_new(base);
 	if (!http_server) {
 		return false;
 	}
-	//°ó¶¨µ½Ö¸¶¨µØÖ·ÉÏ
+	//ç»‘å®šåˆ°æŒ‡å®šåœ°å€ä¸Š
 	int ret = evhttp_bind_socket(http_server, ip, port & 0xFFFF);
 	if (ret != 0) {
 		return false;
 	}
-	//ÉèÖÃÊÂ¼ş´¦Àíº¯Êı
+	//è®¾ç½®äº‹ä»¶å¤„ç†å‡½æ•°
 	evhttp_set_gencb(http_server, cb, arg);
-	//Ò»´Î±ã½áÊø
+	//ä¸€æ¬¡ä¾¿ç»“æŸ
 //	event_base_loopexit(base,NULL);
-	//Æô¶¯ÊÂ¼şÑ­»·£¬µ±ÓĞhttpÇëÇóµÄÊ±ºò»áµ÷ÓÃÖ¸¶¨µÄ»Øµ÷
+	//å¯åŠ¨äº‹ä»¶å¾ªç¯ï¼Œå½“æœ‰httpè¯·æ±‚çš„æ—¶å€™ä¼šè°ƒç”¨æŒ‡å®šçš„å›è°ƒ
 	//unique_lock<mutex> lck(mtx);
 	//while(1)
 	//{
@@ -55,46 +55,30 @@ void start_thread(struct evhttp_request* req,void *arg)
 	
 void MyHttpServerHandler(struct evhttp_request* req)
 {
-	//cv.notify_one();
-	//´´½¨ÒªÊ¹ÓÃµÄbuffer¶ÔÏó
+	//åˆ›å»ºè¦ä½¿ç”¨çš„bufferå¯¹è±¡
 	evbuffer* buf = evbuffer_new();
 	if (!buf) {
 		return;
 	}
-	//»ñÈ¡ÇëÇóµÄURI
+	//è·å–è¯·æ±‚çš„URI
 	string sURI = evhttp_request_get_uri(req);
-	//const char* uri = (char*)evhttp_request_get_uri(req);
-	//Ìí¼Ó¶ÔÓ¦µÄHTTP´úÂë
-	evbuffer_add_printf(buf, "<html>");
-	evbuffer_add_printf(buf, "<head><title>MyHttpServer</title></head>");
-	evbuffer_add_printf(buf, "<body>");
 
-	//½ØÈ¡Ò»¼¶½Ó¿ÚÃû
-	string sInterfaceName;
-	int nSubIndex = sURI.find('//', 1);
+	string sInterfaceName;	//æ¥å£å
+
+	int nSubIndex = sURI.find('?', (unsigned int)1);
 	if (-1 != nSubIndex)
 		sInterfaceName = sURI.substr(1, nSubIndex-1);
-	else
-		sInterfaceName = sURI.substr(1, sURI.size()-1);
 
-	std::cout << "Interface Name Is : " << sInterfaceName << endl;
-
-	//Éú³É½Ó¿Ú¶ÔÏó²¢´¦Àí
-	CHttpCommon * myHttp = (CHttpCommon *)ObjectFactory::CreateObject(sInterfaceName);
+	//ç”Ÿæˆæ¥å£å¯¹è±¡å¹¶å¤„ç†
+	CHttpCommon * myHttp = (CHttpCommon *)ObjectFactory::CreateObject(sInterfaceName, req);
 	myHttp->Handle();
-	evbuffer_add_printf(buf, "<p>");
-	evbuffer_add_printf(buf, myHttp->GetContant().c_str());
-	evbuffer_add_printf(buf, "</p>");
 	delete myHttp;
-	
-	evbuffer_add_printf(buf, "</body>");
-	evbuffer_add_printf(buf, "</html>");
-	//»Ø¸´¸ø¿Í»§¶Ë
-	evhttp_send_reply(req, HTTP_OK, "OK", buf);
-	evbuffer_free(buf);
-	sleep(20);
-}
 
+	//evbuffer_add_printf(buf, myHttp->GetContant().c_str());
+	//å›å¤ç»™å®¢æˆ·ç«¯
+	//evhttp_send_reply(req, HTTP_OK, "OK", buf);
+	//evbuffer_free(buf);
+}
 
 void startse()
 {
@@ -102,22 +86,23 @@ void startse()
 	pMypoll=new CThreadPool(10);
 	startHttpServer("0.0.0.0", 8080, start_thread, NULL);
 	//startHttpServer("0.0.0.0", 80, MyHttpServerHandler, NULL);
-	}
+}
+
 int main(int argc, char** argv)
 {
 	std::cout << "Server Start" << std::endl;
-	//Windows Æ½Ì¨Ì×½Ó×Ö¿âµÄ³õÊ¼»¯
+	//Windows å¹³å°å¥—æ¥å­—åº“çš„åˆå§‹åŒ–
 #ifdef WIN32
 	WSADATA wsaData;
 	WSAStartup(MAKEWORD(2, 2), &wsaData);
 #endif
-	//¶àÏß³Ì
+	//å¤šçº¿ç¨‹
 /*	thread threads[TNUM];
 	for(int i=0;i<TNUM;i++)
 		threads[i]=thread(startse);
 	for(auto &th:threads)
 		th.join();*/
-	//Æô¶¯·şÎñÔÚµØÖ· 127.0.0.1:9000 ÉÏ
+	//å¯åŠ¨æœåŠ¡åœ¨åœ°å€ 127.0.0.1:9000 ä¸Š
 	startse();
 #ifdef WIN32
 	WSACleanup();

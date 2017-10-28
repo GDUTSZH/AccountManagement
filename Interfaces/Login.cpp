@@ -1,10 +1,8 @@
 #include "Login.h"
 
-
-CLogin::CLogin()
+CLogin::CLogin(PREQ pReq) : CHttpCommon(pReq)
 {
 }
-
 
 CLogin::~CLogin()
 {
@@ -12,6 +10,11 @@ CLogin::~CLogin()
 
 void CLogin::Handle()
 {
-	SetContant("Login Handle");
-	//std::cout << "Login Handle" << std::endl;
+	Json::Value jRoot;
+	if(!ParseParam(jRoot))
+	{
+		Send_Error(404, "Param Error");
+		return;
+	}
+	Send(200, jRoot.toStyledString());
 }
