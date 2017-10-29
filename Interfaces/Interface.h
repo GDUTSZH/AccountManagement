@@ -3,12 +3,12 @@
 
 #include "Register.h"
 #include "HttpCommon.h"
-#include "Login.h"
 #include "Error.h"
 #include "UserRegister.h"
+#include "UserLogin.h"
 
 MAP("ErrorClass", CError)
-MAP("LoginClass", CLogin)
 MAP("UserRegister", CUserRegister)
+MAP("UserLogin",CUserLogin)
 
 #endif /* _INTERFACE_H_ */
