@@ -16,24 +16,10 @@ CUserRegister::~CUserRegister()
 
 void CUserRegister::Handle()
 {
-	Json::Value jRoot;
-	if(!ParseParam(jRoot))
-	{
-		Send_Error(404, Base64Encode(jRoot.toStyledString()));
-		return;
-    }
-
-    string sData = Base64Decode(jRoot["data"].asString());
-    //cout << sData << endl;
     Json::Value jData;
-    Json::Reader jReader;
-    if(!jReader.parse(sData, jData))
-    {
-        Send_Error(404, Base64Encode(Error_Data_Format_Wrong));
-		return;
-    }
-
-    //cout << jData << endl;
+    if(!ParseParam(jData))
+        return;
+    
     if(!jData.isMember("name") || !jData.isMember("passwd") ||  \
         !jData.isMember("a1")  || !jData.isMember("q1")     ||  \
         !jData.isMember("a2")  || !jData.isMember("q2")     ||  \
@@ -52,8 +38,6 @@ void CUserRegister::Handle()
     sValues += "," + ONE_VALUE(jData["q2"].asString());
     sValues += "," + ONE_VALUE(jData["a3"].asString());
     sValues += "," + ONE_VALUE(jData["q3"].asString());
-
-    //cout << "Insert Str : " << REGISTER_STR(sValues) << endl;
 
     CMySQL_Client * pMySQL = CMySQL_Client::GetInstance();
     int ret = pMySQL->Insert(REGISTER_STR(sValues));

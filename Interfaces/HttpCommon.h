@@ -11,7 +11,7 @@ public:
 
 	virtual void Handle() = 0;
 	
-	bool ParseParam(Json::Value &jRoot);
+	bool ParseParam(Json::Value &jData);
 	void Send(int nCode, string sMessage);
 	void Send_Fail(int nCode, string sMessage);
 	void Send_Error(int nCode, string sMessage);

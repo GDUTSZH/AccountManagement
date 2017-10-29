@@ -9,7 +9,7 @@ CHttpCommon::CHttpCommon(PREQ pReq)
 CHttpCommon::~CHttpCommon()
 {}
 
-bool CHttpCommon::ParseParam(Json::Value &jRoot)
+bool CHttpCommon::ParseParam(Json::Value &jData)
 {
 	string sURI = evhttp_request_get_uri(pReq);
 
@@ -38,31 +38,39 @@ bool CHttpCommon::ParseParam(Json::Value &jRoot)
 
 	//解析成Json
 	Json::Reader jReader;
-	if ( ! jReader.parse(sParamList.c_str(), jRoot))
+	if ( ! jReader.parse(sParamList.c_str(), jData))
 	{
-		jReader.parse(string(Error_Param_Parse_Failure).c_str(), jRoot);
+		Send_Error(404, Base64Encode(Error_Param_Parse_Failure));
 		return false;
 	}
 	
-	if ( ! jRoot.isMember("tm"))
+	if ( ! jData.isMember("tm"))
 	{
-		jReader.parse(string(Error_Timestamp_NoExist).c_str(), jRoot);
+		Send_Error(404, Base64Encode(Error_Timestamp_NoExist));
 		return false;
 	}
-	if ( ! jRoot.isMember("data"))
+	if ( ! jData.isMember("data"))
 	{
-		jReader.parse(string(Error_Data_NoExist).c_str(), jRoot);
+		Send_Error(404, Base64Encode(Error_Data_NoExist));
 		return false;
 	}
-	if ( ! jRoot.isMember("token"))
+	if ( ! jData.isMember("token"))
 	{
-		jReader.parse(string(Error_Token_NoExist).c_str(), jRoot);
+		Send_Error(404, Base64Encode(Error_Token_NoExist));
 		return false;
 	}
 	
 	//这里需要对三个参数进行解密
 	//再判断时间戳是否在一分钟以内
 	//再计算Token验证数据是否被窜改
+
+	//解析data
+	string sData = Base64Decode(jData["data"].asString());
+    if(!jReader.parse(sData, jData))
+    {
+        Send_Error(404, Base64Encode(Error_Data_Format_Wrong));
+		return false;
+    }
 
 	return true;
 }
