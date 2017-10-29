@@ -36,26 +36,33 @@ bool CHttpCommon::ParseParam(Json::Value &jRoot)
 		sParamList.replace(nIndex, 1, "\",\"");
 	}
 
-	// while(-1 != (nIndex = sParamList.find("&")))
-	// {
-	// 	sParamList.replace(nIndex, 1, "\",\"");
-	// }
-	// while(-1 != (nIndex = sParamList.find("=")))
-	// {
-	// 	sParamList.replace(nIndex, 1, "\":\"");
-	// }
-
+	//解析成Json
 	Json::Reader jReader;
 	if ( ! jReader.parse(sParamList.c_str(), jRoot))
+	{
+		jReader.parse(string(Error_Param_Parse_Failure).c_str(), jRoot);
 		return false;
+	}
 	
 	if ( ! jRoot.isMember("tm"))
+	{
+		jReader.parse(string(Error_Timestamp_NoExist).c_str(), jRoot);
 		return false;
+	}
 	if ( ! jRoot.isMember("data"))
+	{
+		jReader.parse(string(Error_Data_NoExist).c_str(), jRoot);
 		return false;
+	}
 	if ( ! jRoot.isMember("token"))
+	{
+		jReader.parse(string(Error_Token_NoExist).c_str(), jRoot);
 		return false;
-	//std::cout << "参数json格式为：" << jRoot << std::endl;
+	}
+	
+	//这里需要对三个参数进行解密
+	//再判断时间戳是否在一分钟以内
+	//再计算Token验证数据是否被窜改
 
 	return true;
 }
@@ -68,7 +75,18 @@ void CHttpCommon::Send(int nCode, string sMessage)
 	evbuffer_free(pBuf);
 }
 
+void CHttpCommon::Send_Fail(int nCode, string sMessage)
+{
+	evbuffer* pBuf = evbuffer_new();
+	evbuffer_add_printf(pBuf, sMessage.c_str());
+	evhttp_send_reply(pReq, nCode, "Fail", pBuf);
+	evbuffer_free(pBuf);
+}
+
 void CHttpCommon::Send_Error(int nCode, string sMessage)
 {
-	evhttp_send_error(pReq,nCode,sMessage.c_str()); 
+	evbuffer* pBuf = evbuffer_new();
+	evbuffer_add_printf(pBuf, sMessage.c_str());
+	evhttp_send_reply(pReq, nCode, "Error", pBuf);
+	evbuffer_free(pBuf);
 }

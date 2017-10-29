@@ -13,6 +13,7 @@ public:
 	
 	bool ParseParam(Json::Value &jRoot);
 	void Send(int nCode, string sMessage);
+	void Send_Fail(int nCode, string sMessage);
 	void Send_Error(int nCode, string sMessage);
 
 protected:
