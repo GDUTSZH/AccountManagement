@@ -25,7 +25,7 @@ void CUserRegister::Handle()
         !jData.isMember("a2")  || !jData.isMember("q2")     ||  \
         !jData.isMember("a3")  || !jData.isMember("q3"))
     {
-        Send_Error(404, Base64Encode(Error_Data_Param_Miss));
+        Send_Error(404, Error_Data_Param_Miss);
 		return;
     }
     
@@ -43,9 +43,9 @@ void CUserRegister::Handle()
     int ret = pMySQL->Insert(REGISTER_STR(sValues));
     if(ret <= 0)
     {
-        Send_Fail(502, Base64Encode(Error_Operation_Rrror(2, "MySQL Insert Error")));
+        Send_Fail(502, Error_Operation_Rrror(2, "MySQL Insert Error"));
 		return;
     }
 
-    Send(200, Base64Encode(Execute_Successfully("User Register Success")));
+    Send(200, Execute_Successfully("User Register Success"));
 }

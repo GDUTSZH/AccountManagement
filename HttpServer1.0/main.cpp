@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include "../Interfaces/Interface.h"
 #include "../TicketManager/TicketManager.h"
+#include "../MysqlClient/MySQL_Client.h"
 
 #include "ThreadPool.h"
 #define TNUM 70
@@ -92,6 +93,8 @@ int main(int argc, char** argv)
 	
 	CTicketManager::GetInstance()->StartManager();
 	
+	//CMySQL_Client::GetInstance();
+
 	startse();
 
 	return 0;

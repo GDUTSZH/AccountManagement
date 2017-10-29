@@ -7,10 +7,10 @@ CMySQL_Client::CMySQL_Client()
 {
 	m_pMysql = new MYSQL();
 
-	cout << "Init ..." <<endl;
+	cout << "Mysql Init ..." <<endl;
 	mysql_init(m_pMysql);
 
-	cout << "Connect ..." <<endl;
+	cout << "Mysql Connect ..." <<endl;
 	
 	int connected = Connect("120.78.92.86",3306,"mysqlDBA","GDUT14_iot1_DBA","AccountManagementDB",0);
 
@@ -20,9 +20,9 @@ CMySQL_Client::CMySQL_Client()
 		cout << "MySql Connect Faild " << endl;
 
 	if(SetCharacter())
-		cout << "Set Chinese Success" << endl;
+		cout << "Mysql Set Chinese Success" << endl;
 	else
-		cout << "Set Chinese Faild" << endl;
+		cout << "Mysql Set Chinese Faild" << endl;
 }
 
 CMySQL_Client::~CMySQL_Client()

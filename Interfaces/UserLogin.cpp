@@ -19,7 +19,7 @@ void CUserLogin::Handle()
     
     if(!jData.isMember("name") || !jData.isMember("passwd"))
     {
-        Send_Error(404, Base64Encode(Error_Data_Param_Miss));
+        Send_Error(404, Error_Data_Param_Miss);
 		return;
     }
     
@@ -28,7 +28,7 @@ void CUserLogin::Handle()
     int ret = CMySQL_Client::GetInstance()->Select(sValues).size();
     if(ret <= 0)
     {
-        Send_Fail(502, Base64Encode(Error_Operation_Rrror(2, "User Login Failure")));
+        Send_Fail(502, Error_Operation_Rrror(2, "User Login Failure"));
 		return;
     }
 
@@ -40,5 +40,5 @@ void CUserLogin::Handle()
     jRet["code"] = 1;
     jRet["contant"] = jContant;
 
-    Send(200, Base64Encode(jRet.toStyledString()));
+    Send(200, jRet.toStyledString());
 }

@@ -18,6 +18,7 @@ void CTicketManager::StartManager()
 {
     CTicketManager::GetInstance()->m_CleanThread = std::thread(ThreadFunc);
     //CTicketManager::GetInstance()->m_CleanThread.join();
+    printf("Ticket Manager Start.\n");
 }
 
 void CTicketManager::ThreadFunc()

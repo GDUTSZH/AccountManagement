@@ -78,6 +78,7 @@ bool CHttpCommon::ParseParam(Json::Value &jData)
 void CHttpCommon::Send(int nCode, string sMessage)
 {
 	evbuffer* pBuf = evbuffer_new();
+	sMessage = Base64Encode(sMessage);
 	evbuffer_add_printf(pBuf, sMessage.c_str());
 	evhttp_send_reply(pReq, nCode, "OK", pBuf);
 	evbuffer_free(pBuf);
@@ -86,6 +87,7 @@ void CHttpCommon::Send(int nCode, string sMessage)
 void CHttpCommon::Send_Fail(int nCode, string sMessage)
 {
 	evbuffer* pBuf = evbuffer_new();
+	sMessage = Base64Encode(sMessage);
 	evbuffer_add_printf(pBuf, sMessage.c_str());
 	evhttp_send_reply(pReq, nCode, "Fail", pBuf);
 	evbuffer_free(pBuf);
@@ -94,6 +96,7 @@ void CHttpCommon::Send_Fail(int nCode, string sMessage)
 void CHttpCommon::Send_Error(int nCode, string sMessage)
 {
 	evbuffer* pBuf = evbuffer_new();
+	sMessage = Base64Encode(sMessage);
 	evbuffer_add_printf(pBuf, sMessage.c_str());
 	evhttp_send_reply(pReq, nCode, "Error", pBuf);
 	evbuffer_free(pBuf);

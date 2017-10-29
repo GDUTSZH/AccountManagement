@@ -31,8 +31,9 @@ using namespace std;
 #define Error_Token_NoExist			"{\"code\":2,\"contant\":{\"data\":\"Error:Token No Exist.\"}}"
 //Data数据格式错误
 #define Error_Data_Format_Wrong		"{\"code\":2,\"contant\":{\"data\":\"Error:Data Format Wrong.\"}}"
+//Data参数缺失
 #define Error_Data_Param_Miss       "{\"code\":2,\"contant\":{\"data\":\"Error:Data Param Miss.\"}}"
-
+//执行失败
 #define Error_Operation_Rrror(nCode,sData)  "{\"code\":" + Int2String(nCode) + ",\"contant\":{\"data\":\"Error:" + (sData) + "\"}}"
 
 typedef struct evhttp_request* PREQ;
