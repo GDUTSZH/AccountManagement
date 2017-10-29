@@ -10,6 +10,7 @@
 #include <thread>
 #include <mutex>
 #include <event2/event.h>
+#include "../MD5/MD5.h"
 
 using namespace std;
 

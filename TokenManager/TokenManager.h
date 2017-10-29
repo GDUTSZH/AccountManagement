@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "../MD5/MD5.h"
 
 using namespace std;
 

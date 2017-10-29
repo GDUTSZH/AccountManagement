@@ -44,7 +44,7 @@ string CTicketManager::GetTicket(const string &sUserName)
 {
     int nTime = (int)time(NULL);
     string sTicket = GetRandStr(32) + sUserName + Int2String(nTime) + GetRandStr(32);
-    //sTicket = GetMD5(sTicket);
+    sTicket = GetMD5(sTicket);
     std::lock_guard<std::mutex> lg_Lock(m_mtxLock);
     m_mapTicket[sTicket] = nTime;
     return sTicket;

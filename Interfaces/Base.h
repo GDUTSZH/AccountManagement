@@ -15,6 +15,7 @@
 
 #include "../MysqlClient/MySQL_Client.h"
 #include "../TicketManager/TicketManager.h"
+#include "../MD5/MD5.h"
 
 using namespace std;
 
