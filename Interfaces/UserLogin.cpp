@@ -32,5 +32,13 @@ void CUserLogin::Handle()
 		return;
     }
 
-    Send(200, Base64Encode(Execute_Successfully("User Login Success")));
+    Json::Value jContant;
+    jContant["ticket"] = CTicketManager::GetInstance()->GetTicket(jData["name"].asString());
+    jContant["data"] = "User Login Success";
+
+    Json::Value jRet;
+    jRet["code"] = 1;
+    jRet["contant"] = jContant;
+
+    Send(200, Base64Encode(jRet.toStyledString()));
 }

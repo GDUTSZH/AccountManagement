@@ -14,8 +14,11 @@
 #include "../Base64/Base64.h"
 
 #include "../MysqlClient/MySQL_Client.h"
+#include "../TicketManager/TicketManager.h"
 
 using namespace std;
+
+#define ONE_VALUE(VALUE)  string("\'") + (VALUE) + string("\'") 
 
 //执行成功
 #define Execute_Successfully(sData) 	string("{\"code\":1,\"contant\":{\"data\":\"Success:") + (sData) + "\"}}"

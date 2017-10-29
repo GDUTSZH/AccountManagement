@@ -7,6 +7,7 @@
 #include <thread>
 #include <unistd.h>
 #include "../Interfaces/Interface.h"
+#include "../TicketManager/TicketManager.h"
 
 #include "ThreadPool.h"
 #define TNUM 70
@@ -88,6 +89,8 @@ int main(int argc, char** argv)
 	for(auto &th:threads)
 		th.join();*/
 	//启动服务在地址 127.0.0.1:9000 上
+	
+	CTicketManager::GetInstance()->StartManager();
 	
 	startse();
 
