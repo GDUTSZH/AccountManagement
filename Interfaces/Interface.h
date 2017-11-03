@@ -8,11 +8,13 @@
 #include "UserLogin.h"
 #include "TicketUpdate.h"
 #include "ResetPassword.h"
+#include "UserGetData.h"
 
 MAP("ErrorClass", CError)
 MAP("UserRegister", CUserRegister)
 MAP("UserLogin",CUserLogin)
 MAP("TicketUpdate",CTicketUpdate)
 MAP("ResetPassword",CResetPassword)
+MAP("UserGetData",CUserGetData)
 
 #endif /* _INTERFACE_H_ */

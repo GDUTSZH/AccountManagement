@@ -20,6 +20,8 @@ bool CHttpCommon::ParseParam(Json::Value &jData)
 	nPos = sURI.find('?', (unsigned int)1);
 	sParamList = sURI.substr(nPos+1, sURI.size() - nPos);
 
+	//printf("原请求参数列表： %s\n", sParamList.c_str());
+
 	//把参数列表格式化成Json
 	sParamList = "{\"" + sParamList + "\"}";
 	int nIndex, nIndex2;
@@ -36,27 +38,29 @@ bool CHttpCommon::ParseParam(Json::Value &jData)
 		sParamList.replace(nIndex, 1, "\",\"");
 	}
 
+	//printf("格式化请求参数： %s\n", sParamList.c_str());
+
 	//解析成Json
 	Json::Reader jReader;
 	if ( ! jReader.parse(sParamList.c_str(), jData))
 	{
-		Send_Error(404, Base64Encode(Error_Param_Parse_Failure));
+		Send_Error(404, Error_Param_Parse_Failure);
 		return false;
 	}
 	
 	if ( ! jData.isMember("tm"))
 	{
-		Send_Error(404, Base64Encode(Error_Timestamp_NoExist));
+		Send_Error(404, Error_Timestamp_NoExist);
 		return false;
 	}
 	if ( ! jData.isMember("data"))
 	{
-		Send_Error(404, Base64Encode(Error_Data_NoExist));
+		Send_Error(404, Error_Data_NoExist);
 		return false;
 	}
 	if ( ! jData.isMember("token"))
 	{
-		Send_Error(404, Base64Encode(Error_Token_NoExist));
+		Send_Error(404, Error_Token_NoExist);
 		return false;
 	}
 	
@@ -68,7 +72,7 @@ bool CHttpCommon::ParseParam(Json::Value &jData)
 	string sData = Base64Decode(jData["data"].asString());
     if(!jReader.parse(sData, jData))
     {
-        Send_Error(404, Base64Encode(Error_Data_Format_Wrong));
+        Send_Error(404, Error_Data_Format_Wrong);
 		return false;
     }
 

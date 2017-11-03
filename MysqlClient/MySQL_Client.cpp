@@ -118,10 +118,12 @@ Json::Value CMySQL_Client::Select(string sQueny)
 
 		for(int j=0;j<num_fields;j++)  //输出每一字段
 		{
-			jRow[vField[j]] = row[j];
+			if(row[j] != NULL)
+				jRow[vField[j]] = row[j];
+			else 
+				jRow[vField[j]] = "";
 		}
 		jRoot[i] = jRow;
 	}
-	
 	return jRoot;
 }
