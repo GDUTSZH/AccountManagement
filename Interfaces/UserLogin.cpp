@@ -25,7 +25,14 @@ void CUserLogin::Handle()
     
     string sValues = USER_LOGIN_STR(jData["name"].asString(), jData["passwd"].asString());
 
-    int ret = CMySQL_Client::GetInstance()->Select(sValues).size();
+    Json::Value jRoot = CMySQL_Client::GetInstance()->Select(sValues);
+    if(jRoot.isMember("error"))
+    {
+        Send_Fail(502, Error_Operation_Rrror(2, "User Login Failure"));
+		return;
+    }
+    
+    int ret = jRoot["array"].size();
     if(ret <= 0)
     {
         Send_Fail(502, Error_Operation_Rrror(2, "User Login Failure"));

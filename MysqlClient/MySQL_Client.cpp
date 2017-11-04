@@ -92,14 +92,21 @@ int CMySQL_Client::Update(string sQueny)
 Json::Value CMySQL_Client::Select(string sQueny)
 {
 	Json::Value jRoot;
-	jRoot.resize(0);
+	Json::Value jArray;
+	jArray.resize(0);
 
 	if(mysql_query(m_pMysql, sQueny.c_str()))	//查询错误
+	{
+		jRoot["error"] = "1";
 		return jRoot;
+	}
 
 	MYSQL_RES *result = mysql_store_result(m_pMysql);  //获取结果集
 	if(!result)
+	{
+		jRoot["error"] = "1";
 		return jRoot;
+	}
 	
 	int num_fields = mysql_num_fields(result); //获取结果集中总共的字段数，即列数
 	int num_rows=mysql_num_rows(result);       //获取结果集中总共的行数
@@ -116,14 +123,18 @@ Json::Value CMySQL_Client::Select(string sQueny)
 		//获取下一行数据
 		MYSQL_ROW row = mysql_fetch_row(result);
 
+		string sValue;
 		for(int j=0;j<num_fields;j++)  //输出每一字段
 		{
 			if(row[j] != NULL)
-				jRow[vField[j]] = row[j];
+				sValue = row[j];
 			else 
-				jRow[vField[j]] = "";
+				sValue = "";
+			jRow[vField[j]] = sValue;
 		}
-		jRoot[i] = jRow;
+		jArray[i] = jRow;
 	}
+
+	jRoot["array"] = jArray;
 	return jRoot;
 }
