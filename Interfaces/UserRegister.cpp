@@ -32,12 +32,12 @@ void CUserRegister::Handle()
     string sValues;
     sValues += ONE_VALUE(jData["name"].asString());
     sValues += "," + ONE_VALUE(jData["passwd"].asString());
-    sValues += "," + ONE_VALUE(jData["a1"].asString());
     sValues += "," + ONE_VALUE(jData["q1"].asString());
-    sValues += "," + ONE_VALUE(jData["a2"].asString());
+    sValues += "," + ONE_VALUE(jData["a1"].asString());
     sValues += "," + ONE_VALUE(jData["q2"].asString());
-    sValues += "," + ONE_VALUE(jData["a3"].asString());
+    sValues += "," + ONE_VALUE(jData["a2"].asString());
     sValues += "," + ONE_VALUE(jData["q3"].asString());
+    sValues += "," + ONE_VALUE(jData["a3"].asString());
 
     CMySQL_Client * pMySQL = CMySQL_Client::GetInstance();
     int ret = pMySQL->Insert(REGISTER_STR(sValues));
@@ -47,5 +47,13 @@ void CUserRegister::Handle()
 		return;
     }
 
-    Send(200, Execute_Successfully("User Register Success"));
+    Json::Value jContant;
+    jContant["ticket"] = CTicketManager::GetInstance()->GetTicket(jData["name"].asString());
+    jContant["data"] = "User Register Success";
+
+    Json::Value jRet;
+    jRet["code"] = 1;
+    jRet["contant"] = jContant;
+
+    Send(200, jRet.toStyledString());
 }
