@@ -20,7 +20,7 @@ bool CHttpCommon::ParseParam(Json::Value &jData)
 	nPos = sURI.find('?', (unsigned int)1);
 	sParamList = sURI.substr(nPos+1, sURI.size() - nPos);
 
-	//printf("原请求参数列表： %s\n", sParamList.c_str());
+	printf("原请求参数列表： %s\n", sParamList.c_str());
 
 	//把参数列表格式化成Json
 	sParamList = "{\"" + sParamList + "\"}";
@@ -70,6 +70,9 @@ bool CHttpCommon::ParseParam(Json::Value &jData)
 
 	//解析data
 	string sData = Base64Decode(jData["data"].asString());
+
+	printf("Base64解析得到的Data： %s\n", sData.c_str());
+
     if(!jReader.parse(sData, jData))
     {
         Send_Error(404, Error_Data_Format_Wrong);

@@ -19,7 +19,7 @@
 
 using namespace std;
 
-#define ONE_VALUE(VALUE)  string("\'") + (VALUE) + string("\'") 
+#define ONE_VALUE(VALUE)  (((VALUE).size()==0)?(string("NULL")):(string("\'") + (VALUE) + string("\'"))) 
 
 //执行成功
 #define Execute_Successfully(sData) 	string("{\"code\":1,\"contant\":{\"data\":\"Success:") + (sData) + "\"}}"

@@ -6,7 +6,7 @@
         user_question1,user_answer1,user_question2,user_answer2,\
         user_question3,user_answer3) values(" + (VALUES) + ");"     
 
-#define ONE_VALUE(VALUE)  string("\'") + (VALUE) + string("\'") 
+//#define ONE_VALUE(VALUE)  string("\'") + (VALUE) + string("\'") 
 
 CUserRegister::CUserRegister(PREQ pReq) : CHttpCommon(pReq)
 { }
