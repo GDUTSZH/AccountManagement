@@ -12,6 +12,7 @@
 #include "UserForgetPassword.h"
 #include "UserGetQuestion.h"
 #include "UserAddAccount.h"
+#include "UserAddType.h"
 
 MAP("ErrorClass", CError)
 MAP("UserRegister", CUserRegister)
@@ -22,5 +23,6 @@ MAP("UserGetData",CUserGetData)
 MAP("ForgetPassword",CUserForgetPassword)
 MAP("GetQuestion",CUserGetQuestion)
 MAP("AddAccount",CUserAddAccount)
+MAP("AddType",CUserAddType)
 
 #endif /* _INTERFACE_H_ */
