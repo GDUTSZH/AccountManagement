@@ -14,6 +14,8 @@
 #include "UserAddAccount.h"
 #include "UserAddType.h"
 #include "UserDestory.h"
+#include "UserDeleteAccount.h"
+#include "UserDeleteType.h"
 
 MAP("ErrorClass", CError)
 MAP("UserRegister", CUserRegister)
@@ -26,5 +28,7 @@ MAP("GetQuestion",CUserGetQuestion)
 MAP("AddAccount",CUserAddAccount)
 MAP("AddType",CUserAddType)
 MAP("Destory",CUserDestory)
+MAP("DeleteAccount",CUserDeleteAccount)
+MAP("DeleteType",CUserDeleteType)
 
 #endif /* _INTERFACE_H_ */
