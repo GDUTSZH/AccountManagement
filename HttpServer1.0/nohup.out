@@ -11,3 +11,212 @@ Mysql Init ...
 Mysql Connect ...
 MySql Connect Success
 Mysql Set Chinese Success
+Server Start
+Ticket Manager Start.
+原请求参数列表： tm=1510122416&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICJhYWEiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "aaa"
+}
+
+Mysql Init ...
+Mysql Connect ...
+MySql Connect Success
+Mysql Set Chinese Success
+原请求参数列表： tm=1510122416&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICI3YzkwYjk2NjlkMzZmYzQ2ODE4M2Y4Yjg2M2ZmMjFmMCIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "7c90b9669d36fc468183f8b863ff21f0"
+}
+
+原请求参数列表： tm=1510122513&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICJhYWEiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "aaa"
+}
+
+原请求参数列表： tm=1510122513&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICJiMGU4ZDE4NjRlMTExMWQzYjhlZGM1ZGRkMTJiZDdmNSIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "b0e8d1864e1111d3b8edc5ddd12bd7f5"
+}
+
+原请求参数列表： tm=1510122597&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICIxMjMiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "123"
+}
+
+原请求参数列表： tm=1510122600&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICJhYWEiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "aaa"
+}
+
+原请求参数列表： tm=1510122600&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICI4ZmFjMzliYTJmYTBjNmViOWNjMzM4MWQ4MGRiNjNjMiIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "8fac39ba2fa0c6eb9cc3381d80db63c2"
+}
+
+原请求参数列表： tm=1510122638&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICJhYWEiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "aaa"
+}
+
+原请求参数列表： tm=1510122639&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICJiNDEzYjEzOWFkZjYzZmEwMWJlYTEwZDZiNDU2ZmM0OSIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "b413b139adf63fa01bea10d6b456fc49"
+}
+
+原请求参数列表： tm=1510122770&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICJhYWEiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "aaa"
+}
+
+原请求参数列表： tm=1510122771&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICI5OTMwZjRmZWY0ZDgyYmUwMzJhZGUxZTk2NDAyMTRiYSIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "9930f4fef4d82be032ade1e9640214ba"
+}
+
+原请求参数列表： tm=1510122865&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICJhYWEiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "aaa"
+}
+
+原请求参数列表： tm=1510122866&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICIwMmY0MGViNTQ3NjdlNWQwMmE1N2RkYjFlMmM5NDkzOCIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "02f40eb54767e5d02a57ddb1e2c94938"
+}
+
+原请求参数列表： tm=1510122895&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICJhYWEiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "aaa"
+}
+
+原请求参数列表： tm=1510122896&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICI3OWI3OThjYjk2NDkzMTIyNzY3ZDZmNTcyMjQ5NmI4MiIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "79b798cb96493122767d6f5722496b82"
+}
+
+原请求参数列表： tm=1510123046&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICJhYWEiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "aaa"
+}
+
+原请求参数列表： tm=1510123055&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICJkMDM4NjBhZjQ3ZjExMWNhMjA4Y2FlZTA1ZWE4MjllYSIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "d03860af47f111ca208caee05ea829ea"
+}
+
+原请求参数列表： tm=1510123117&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICJhYWEiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "aaa"
+}
+
+原请求参数列表： tm=1510123117&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICI5YWUxM2Y1MjViZmIxNzk5NjhiNzZkNDdjOTdjYWRlNyIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "9ae13f525bfb179968b76d47c97cade7"
+}
+
+原请求参数列表： tm=1510123379&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICJhYWEiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "aaa"
+}
+
+原请求参数列表： tm=1510123380&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICI3NDU0ZDEwYWQxNjNlZThkNTFjYmEwZDQ4MGVmZTFjZSIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "7454d10ad163ee8d51cba0d480efe1ce"
+}
+
+原请求参数列表： tm=1510123443&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICJhYWEiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "aaa"
+}
+
+原请求参数列表： tm=1510123444&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICIzNWUyOGQyMDY2YTJiODRmOGU4NDk0MDUzM2M2YzVlZCIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "35e28d2066a2b84f8e84940533c6c5ed"
+}
+
+原请求参数列表： tm=1510123641&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICJhYWEiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "aaa"
+}
+
+原请求参数列表： tm=1510123642&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICI5MzNhNzJhNDRjZWM2ZDc0YTZhNjhjZjAzOWUxN2U4ZSIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "933a72a44cec6d74a6a68cf039e17e8e"
+}
+
+原请求参数列表： tm=1510123689&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICJhYWEiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "aaa"
+}
+
+原请求参数列表： tm=1510123689&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICI1NGY3NzYyMDU3OWEyZmIyY2M1YzFlYzIzNjlhM2I4MCIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "54f77620579a2fb2cc5c1ec2369a3b80"
+}
+
+原请求参数列表： tm=1510124383&data=ewoJIm5hbWUiIDogInN6aCIsCgkicGFzc3dkIiA6ICJhYWEiCn0K&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"passwd" : "aaa"
+}
+
+原请求参数列表： tm=1510124384&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICI5ZDJlMDMzNDRmMjk3NzNkODU3NmI4NWYxYzU4MmNjYyIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "9d2e03344f29773d8576b85f1c582ccc"
+}
+
+原请求参数列表： tm=1510124413&data=ewoJImVudHJ5IiA6IAoJewoJCSJqb2JfdHlwZSIgOiAiXHU1NGM4XHU1NGM4IiwKCQkibm90ZSIgOiAiIgoJfSwKCSJuYW1lIiA6ICJzemgiLAoJInRpY2tldCIgOiAiOWQyZTAzMzQ0ZjI5NzczZDg1NzZiODVmMWM1ODJjY2MiCn0K&token=token
+Base64解析得到的Data： {
+	"entry" : 
+	{
+		"job_type" : "\u54c8\u54c8",
+		"note" : ""
+	},
+	"name" : "szh",
+	"ticket" : "9d2e03344f29773d8576b85f1c582ccc"
+}
+
+添加语句 : Insert Into AccountManagement_Type         (user_name,job_type,note)                   VALUES('szh','哈哈',NULL);
+原请求参数列表： tm=1510124414&data=ewoJIm5hbWUiIDogInN6aCIsCgkidGlja2V0IiA6ICI5ZDJlMDMzNDRmMjk3NzNkODU3NmI4NWYxYzU4MmNjYyIKfQo=&token=token
+Base64解析得到的Data： {
+	"name" : "szh",
+	"ticket" : "9d2e03344f29773d8576b85f1c582ccc"
+}
+
+原请求参数列表： tm=1510124417&data=ewoJImVudHJ5IiA6IAoJewoJCSJqb2JfdHlwZSIgOiAiXHU1NGM4XHU1NGM4IgoJfSwKCSJuYW1lIiA6ICJzemgiLAoJInRpY2tldCIgOiAiMGRlZmFiYTMyMWY0OTUxNTQ1OWFkNmNhZmMzMWI4MGYiCn0K&token=token
+Base64解析得到的Data： {
+	"entry" : 
+	{
+		"job_type" : "\u54c8\u54c8"
+	},
+	"name" : "szh",
+	"ticket" : "0defaba321f49515459ad6cafc31b80f"
+}
+
+Queyr String : DELETE FROM AccountManagement_Type             WHERE user_name='szh' AND job_type='哈哈';
