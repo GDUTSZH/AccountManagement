@@ -1,0 +1,39 @@
+CREATE TABLE `AccountManagement_User` (
+  `user_name` varchar(20) NOT NULL,
+  `user_password` varchar(20) NOT NULL,
+  `user_question1` varchar(25) NOT NULL,
+  `user_answer1` varchar(20) NOT NULL,
+  `user_question2` varchar(25) NOT NULL,
+  `user_answer2` varchar(20) NOT NULL,
+  `user_question3` varchar(25) NOT NULL,
+  `user_answer3` varchar(20) NOT NULL,
+  PRIMARY KEY (`user_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `AccountManagement_Type` (
+  `user_name` varchar(20) NOT NULL,
+  `job_type` varchar(20) NOT NULL,
+  `note` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`user_name`,`job_type`),
+  KEY `job_type` (`job_type`) USING HASH,
+  CONSTRAINT `FK_1` FOREIGN KEY (`user_name`) REFERENCES `AccountManagement_User` (`user_name`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `AccountManagement_AccountList` (
+  `user_name` varchar(20) NOT NULL,
+  `job_type` varchar(20) DEFAULT NULL,
+  `company_name` varchar(50) NOT NULL,
+  `job_name` varchar(50) NOT NULL,
+  `account_name` varchar(20) NOT NULL,
+  `account_password` varchar(20) NOT NULL,
+  `note` varchar(200) DEFAULT NULL,
+  `post_url` varchar(200) NOT NULL,
+  `post_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_name`,`company_name`,`job_name`),
+  KEY `FKA_2` (`job_type`),
+  CONSTRAINT `FKA_2` FOREIGN KEY (`job_type`) REFERENCES `AccountManagement_Type` (`job_type`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TRIGGER `DeleteType` BEFORE DELETE ON `AccountManagement_User` FOR EACH ROW DELETE FROM AccountManagement_Type WHERE user_name=old.user_name;
+
+CREATE TRIGGER `DeleteList` BEFORE DELETE ON `AccountManagement_User` FOR EACH ROW DELETE FROM AccountManagement_AccountList WHERE user_name=old.user_name;
